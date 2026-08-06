@@ -67,12 +67,13 @@ footer .sectionIndex{min-height:56px}
 }
 
 /* Name-led hero composition */
-.heroCopy{position:relative}
-.heroCopy .heroName{font-size:clamp(82px,8vw,138px);font-weight:800;line-height:.76;letter-spacing:-.065em;transform:scaleX(1.02);max-width:100%}
-.heroCopy .helloCn{font-size:12px;font-weight:300;letter-spacing:.12em;margin-top:38px}
+.heroCopy{position:relative;padding-top:clamp(34px,4.2vw,68px)}
+.heroCopy .heroName{display:flex;flex-direction:column;align-items:flex-start;width:100%;font-size:clamp(98px,9.6vw,166px);font-weight:800;line-height:.7;letter-spacing:-.075em;transform:scaleX(1.02);max-width:100%}
+.heroCopy .heroName span:last-child{margin-left:clamp(48px,6vw,110px)}
+.heroCopy .helloCn{font-size:18px;font-weight:300;letter-spacing:.1em;margin-top:48px}
 .heroCopy>.enterLink{position:absolute;right:clamp(38px,5.2vw,84px);bottom:60px}
-@media(max-width:900px){.heroCopy .heroName{font-size:clamp(74px,14vw,116px)}.heroCopy>.enterLink{right:6vw;bottom:48px}}
-@media(max-width:560px){.heroCopy .heroName{font-size:76px}.heroCopy .helloCn{font-size:11px;margin-top:30px}.heroCopy>.enterLink{right:25px;bottom:42px}}
+@media(max-width:900px){.heroCopy{padding-top:52px}.heroCopy .heroName{font-size:clamp(92px,18vw,136px)}.heroCopy .helloCn{font-size:16px}.heroCopy>.enterLink{right:6vw;bottom:48px}}
+@media(max-width:560px){.heroCopy{padding-top:46px}.heroCopy .heroName{font-size:88px}.heroCopy .heroName span:last-child{margin-left:44px}.heroCopy .helloCn{font-size:15px;margin-top:38px;letter-spacing:.07em}.heroCopy>.enterLink{right:25px;bottom:42px}}
 
 /* Quiet inset rule between editorial chapters. */
 .hero{position:relative;border-bottom:0}

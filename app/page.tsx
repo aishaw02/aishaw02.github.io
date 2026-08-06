@@ -19,7 +19,7 @@ export default function Home() {
         <div className="heroImage" role="img" aria-label="夏日林间水面旁的身影" />
         <div className="heroCopy">
           <div>
-            <h1 className="heroName" id="hero-title">Aisha<br />Wang</h1>
+            <h1 className="heroName" id="hero-title"><span>Aisha</span><span>Wang</span></h1>
             <p className="helloCn">很高兴认识你，我是王方浦</p>
           </div>
           <a className="enterLink" href="#about">ENTER <span>→</span></a>
