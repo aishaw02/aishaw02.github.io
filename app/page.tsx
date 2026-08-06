@@ -12,7 +12,7 @@ export default function Home() {
         <nav aria-label="主导航">
           <a href="#about">ABOUT</a><a href="#journey">JOURNEY</a><a href="#projects">PROJECTS</a><a href="#life">LIFE</a>
         </nav>
-        <span className="indexLabel">PERSONAL INDEX / 2026</span>
+        <a className="headerResume" href="/wang-fangpu-resume.pdf" download="王方浦-个人简历.pdf">DOWNLOAD CV <span>↓</span></a>
       </header>
 
       <section className="hero" aria-labelledby="hero-title">
@@ -21,12 +21,8 @@ export default function Home() {
           <div>
             <h1 id="hero-title">Hello, I&apos;m Fangpu.</h1>
             <p className="helloCn">很高兴认识你，我是王方浦</p>
-            <p className="heroIntro">认真生活，持续探索</p>
           </div>
-          <div className="heroActions">
-            <a className="enterLink" href="#about">ENTER <span>→</span></a>
-            <a className="resumeLink" href="/wang-fangpu-resume.pdf" download="王方浦-个人简历.pdf">DOWNLOAD CV <span>↓</span></a>
-          </div>
+          <a className="enterLink" href="#about">ENTER <span>→</span></a>
         </div>
       </section>
 
