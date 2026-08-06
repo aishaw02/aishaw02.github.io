@@ -20,11 +20,13 @@ export default function Home() {
         <div className="heroCopy">
           <div>
             <h1 id="hero-title">Hello, I&apos;m Fangpu.</h1>
-            <p className="helloCn">很高兴认识你。</p>
-            <p className="heroIntro">在产品、AI 与生活之间，保持好奇。</p>
-            <p className="heroMeta">PRODUCT · AI · LIFE</p>
+            <p className="helloCn">很高兴认识你，我是王方浦</p>
+            <p className="heroIntro">认真生活，持续探索</p>
           </div>
-          <a className="enterLink" href="#about">ENTER <span>→</span></a>
+          <div className="heroActions">
+            <a className="enterLink" href="#about">ENTER <span>→</span></a>
+            <a className="resumeLink" href="/wang-fangpu-resume.pdf" download="王方浦-个人简历.pdf">DOWNLOAD CV <span>↓</span></a>
+          </div>
         </div>
       </section>
 
