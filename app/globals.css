@@ -61,3 +61,52 @@ footer .sectionIndex{min-height:56px}
   .lifeImage{min-height:auto}
   .footerMain{min-height:430px}
 }
+
+/* Distinct editorial chapter layouts */
+.pageFrame{position:relative;background:var(--paper);font-family:"PingFang SC","Hiragino Sans GB",sans-serif}
+.pageTop{position:absolute;z-index:4;top:0;left:0;right:0;height:56px;padding:0 3.1vw;display:flex;align-items:center;justify-content:space-between;font-family:"Arial Narrow","Avenir Next Condensed",sans-serif;font-size:11px;font-weight:600;letter-spacing:.13em}
+.pageTop span:last-child{font-family:"PingFang SC",sans-serif;font-size:13px;letter-spacing:.08em}
+
+.aboutPage{display:block;padding:56px 3.1vw 24px}
+.aboutPage h2{position:absolute;left:22.5%;top:35%;font-size:clamp(46px,5.2vw,82px);line-height:1.25;z-index:2}
+.aboutAside{position:absolute;left:3.1vw;top:31%;font-style:normal;font-size:10px;line-height:1.65;letter-spacing:.02em}
+.aboutAside strong{font-family:"Arial Narrow",sans-serif;font-size:11px;letter-spacing:.1em}.aboutAside p{margin:18px 0}.aboutAside i{font-style:normal}
+.aboutPortrait{position:absolute;right:6vw;top:20%;width:18%;height:40%;margin:0;overflow:hidden;z-index:1}.aboutPortrait img{width:100%;height:100%;object-fit:cover;object-position:72% 52%;filter:saturate(.72) contrast(.95)}
+.aboutNote{position:absolute;left:23%;bottom:11%;max-width:440px;font-size:13px;line-height:1.9;color:#515654}
+.aboutMotto{position:absolute;left:3.1vw;bottom:7%;font:600 9px/1.7 "Arial Narrow",sans-serif;letter-spacing:.1em}
+.coordinates{position:absolute;right:3.1vw;bottom:7%;font:600 9px/1.7 "Arial Narrow",sans-serif;letter-spacing:.08em;text-align:right}
+
+.journeyPage{display:block;padding:56px 3.1vw 28px}
+.journeyIntro{position:absolute;left:3.1vw;top:12%;display:flex;align-items:flex-end;gap:8vw}.journeyIntro h2{font-size:clamp(34px,4vw,62px)}.journeyIntro p{margin:0 0 5px;font-size:13px;line-height:1.8;color:#59605d}
+.timeline{position:absolute;left:5%;right:5%;top:46%;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink)}
+.timelineItem{position:relative;padding:40px 5vw 0 0}.timelineItem:last-child{padding-right:0}.timelineYear{position:absolute;top:-100px;left:-8px;font:300 clamp(58px,7vw,108px)/1 "Iowan Old Style","Times New Roman",serif;color:#d8dfdb;letter-spacing:-.04em}.timelineDot{position:absolute;width:8px;height:8px;border-radius:50%;background:var(--ink);top:-4px;left:0}.timelineCopy{max-width:270px}.timelineCopy b{display:block;font:400 18px "Arial Narrow",sans-serif}.timelineCopy small{display:block;margin:10px 0 22px;font:600 9px "Arial Narrow",sans-serif;letter-spacing:.1em;color:#747a77}.timelineCopy h3{font-size:19px;font-weight:400;margin:0 0 12px}.timelineCopy p{font-size:12px;line-height:1.8;color:#515654;margin:0}
+.journeyFoot{position:absolute;left:3.1vw;bottom:5%;font:600 9px/1.7 "Arial Narrow",sans-serif;letter-spacing:.1em}
+
+.projectPage{display:block;padding:56px 3.1vw 25px}
+.projectTabs{position:absolute;left:3.1vw;top:16%;display:flex;gap:13px;align-items:center;font:500 12px "Arial Narrow",sans-serif;letter-spacing:.08em}.projectTabs b{padding-bottom:7px;border-bottom:1px solid var(--ink)}.projectTabs span{color:#9ba09d}
+.projectFeature{position:absolute;left:3.1vw;right:3.1vw;top:23%;bottom:24%;display:grid;grid-template-columns:43% 57%;align-items:stretch}
+.projectNarrative{padding:2% 7% 0 0;display:flex;flex-direction:column;align-items:flex-start}.projectNo{font:400 22px "Arial Narrow",sans-serif}.projectNarrative h2{font-size:clamp(42px,5vw,72px);line-height:1.05;margin:12px 0 22px}.projectNarrative>p{max-width:520px;font-size:13px;line-height:1.8;color:#565c59;margin:0 0 14px}.projectNarrative .projectLead{font-size:16px;color:var(--ink)}.projectNarrative>a{margin-top:auto;font:600 10px "Arial Narrow",sans-serif;letter-spacing:.12em}.projectNarrative>a span{margin-left:20px}
+.projectVisual{position:relative;overflow:hidden;background:#dfe4df;border:1px solid #c9cfcb}.projectVisual:before{content:"";position:absolute;width:78%;height:115%;left:-18%;top:-20%;background:#eef0ec;transform:rotate(-12deg);border-right:1px solid #bcc7bf}.caseLabel{position:absolute;top:7%;left:6%;font:700 clamp(18px,2vw,30px)/1.1 "Arial Narrow",sans-serif;letter-spacing:.08em}.caseLabel small{font-size:8px;font-weight:600}.caseCard{position:absolute;width:29%;height:68%;right:16%;top:17%;background:#f7f8f4;border:1px solid #aeb6b1;box-shadow:0 18px 35px rgba(40,50,45,.18);padding:12% 8% 8%;display:flex;flex-direction:column;justify-content:space-between}.caseCard span,.caseCard i{font:600 8px "Arial Narrow",sans-serif;letter-spacing:.12em}.caseCard strong{font:500 clamp(12px,1.2vw,19px)/1.35 "Arial Narrow",sans-serif}.caseCard i{font-style:normal;color:#737b77}
+.decisionStrip{position:absolute;left:3.1vw;right:3.1vw;bottom:4%;display:grid;grid-template-columns:repeat(3,1fr);gap:4vw;border-top:1px solid var(--line);padding-top:20px}.decisionStrip>div{display:grid;grid-template-columns:30px 80px 1fr;align-items:start;gap:10px}.decisionStrip b,.decisionStrip span{font:600 10px "Arial Narrow",sans-serif;letter-spacing:.08em}.decisionStrip p{font-size:11px;line-height:1.6;color:#626764;margin:0}
+
+.lifePage{display:block;padding:56px 3.1vw 24px}
+.lifePage>h2{position:absolute;left:3.1vw;top:16%;font-size:clamp(34px,4.2vw,64px);z-index:3}
+.lifeShot{position:absolute;margin:0}.lifeShot img{width:100%;height:100%;object-fit:cover;filter:saturate(.72) contrast(.94)}.lifeShot figcaption{font-size:9px;letter-spacing:.05em;margin-top:8px;color:#606663}
+.shotOne{left:34%;top:12%;width:29%;height:35%}.shotOne img{object-position:55% 48%}.shotTwo{right:7%;top:18%;width:17%;height:27%}.shotTwo img{object-position:center}.shotThree{left:13%;bottom:8%;width:20%;height:28%}.shotThree img{object-position:70% 50%}
+.lifeWords{position:absolute;left:40%;right:6%;bottom:10%;display:grid;grid-template-columns:repeat(2,1fr);gap:22px 6vw}.lifeWords p{display:grid;grid-template-columns:26px 1fr auto;border-top:1px solid var(--line);padding-top:10px;margin:0;font-size:14px}.lifeWords span,.lifeWords small{font:600 9px "Arial Narrow",sans-serif;letter-spacing:.1em}.lifeWords small{color:#858b88}
+.lifeNote{position:absolute;right:3.1vw;bottom:3%;font-size:11px;line-height:1.7;text-align:right}
+
+@media(max-height:760px) and (min-width:901px){
+  .aboutPage h2{top:31%}.aboutPortrait{top:18%;height:38%}.aboutNote{bottom:9%}
+  .journeyIntro{top:10%}.timeline{top:47%}.timelineYear{top:-76px}.timelineCopy small{margin-bottom:12px}
+  .projectFeature{top:22%;bottom:25%}.projectNarrative h2{font-size:clamp(38px,4.2vw,58px);margin-bottom:14px}.projectNarrative>p{line-height:1.6}.decisionStrip{padding-top:12px}
+}
+
+@media(max-width:900px){
+  .pageFrame{padding:80px 24px 60px!important;display:block!important}.pageTop{height:56px;padding:0 24px;border-bottom:1px solid var(--line)}
+  .aboutPage h2,.aboutAside,.aboutPortrait,.aboutNote,.aboutMotto,.coordinates,.journeyIntro,.timeline,.journeyFoot,.projectTabs,.projectFeature,.decisionStrip,.lifePage>h2,.lifeShot,.lifeWords,.lifeNote{position:relative;inset:auto;left:auto;right:auto;top:auto;bottom:auto;width:auto;height:auto}
+  .aboutAside{margin:20px 0 45px}.aboutPage h2{font-size:42px;margin-bottom:45px}.aboutPortrait{height:52vw;max-height:420px;margin:0 0 35px}.aboutNote{margin-bottom:45px}.coordinates{display:block;margin-top:20px;text-align:left}
+  .journeyIntro{display:block;margin:15px 0 110px}.journeyIntro h2{margin-bottom:25px}.timeline{display:block;border-top:0}.timelineItem{border-top:1px solid var(--ink);padding:35px 0 45px}.timelineYear{top:-60px;right:0;left:auto}.timelineDot{display:none}.journeyFoot{margin-top:30px}
+  .projectTabs{margin:10px 0 35px}.projectFeature{display:block}.projectNarrative{padding:0;margin-bottom:40px}.projectNarrative>a{margin-top:25px}.projectVisual{height:65vw;min-height:330px}.decisionStrip{margin-top:45px;display:block}.decisionStrip>div{grid-template-columns:30px 90px 1fr;padding:18px 0;border-bottom:1px solid var(--line)}
+  .lifePage>h2{margin:15px 0 45px}.lifeShot{margin:0 0 36px}.lifeShot img{height:60vw;max-height:460px}.lifeWords{margin-top:45px}.lifeNote{margin-top:35px;text-align:left}
+}
