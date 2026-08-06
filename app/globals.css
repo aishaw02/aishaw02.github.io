@@ -68,7 +68,7 @@ footer .sectionIndex{min-height:56px}
 
 /* Name-led hero composition */
 .heroCopy{position:relative;padding-top:clamp(34px,4.2vw,68px)}
-.heroCopy .heroName{display:flex;flex-direction:column;align-items:flex-start;width:100%;font-size:clamp(98px,9.6vw,166px);font-weight:800;line-height:.7;letter-spacing:-.075em;transform:scaleX(1.02);max-width:100%}
+.heroCopy .heroName{display:flex;flex-direction:column;align-items:flex-start;row-gap:clamp(12px,1.2vw,22px);width:100%;font-size:clamp(98px,9.6vw,166px);font-weight:800;line-height:.7;letter-spacing:-.035em;transform:scaleX(1.02);max-width:100%}
 .heroCopy .heroName span:last-child{margin-left:clamp(48px,6vw,110px)}
 .heroCopy .helloCn{font-size:18px;font-weight:300;letter-spacing:.1em;margin-top:48px}
 .heroCopy>.enterLink{position:absolute;right:clamp(38px,5.2vw,84px);bottom:60px}
