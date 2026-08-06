@@ -66,6 +66,14 @@ footer .sectionIndex{min-height:56px}
   .footerMain{min-height:430px}
 }
 
+/* Name-led hero composition */
+.heroCopy{position:relative}
+.heroCopy .heroName{font-size:clamp(82px,8vw,138px);font-weight:800;line-height:.76;letter-spacing:-.065em;transform:scaleX(1.02);max-width:100%}
+.heroCopy .helloCn{font-size:12px;font-weight:300;letter-spacing:.12em;margin-top:38px}
+.heroCopy>.enterLink{position:absolute;right:clamp(38px,5.2vw,84px);bottom:60px}
+@media(max-width:900px){.heroCopy .heroName{font-size:clamp(74px,14vw,116px)}.heroCopy>.enterLink{right:6vw;bottom:48px}}
+@media(max-width:560px){.heroCopy .heroName{font-size:76px}.heroCopy .helloCn{font-size:11px;margin-top:30px}.heroCopy>.enterLink{right:25px;bottom:42px}}
+
 /* Quiet inset rule between editorial chapters. */
 .hero{position:relative;border-bottom:0}
 .hero::after,.pageFrame::after{content:"";position:absolute;z-index:8;left:12.5vw;right:12.5vw;bottom:0;height:1px;background:rgba(22,25,24,.14);pointer-events:none}
