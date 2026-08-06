@@ -17,9 +17,9 @@ footer{background:#171a19;color:#f2f3ef;padding-bottom:28px}footer .sectionIndex
 
 /* One viewport, one chapter. The header stays visible while every section
    occupies the remaining Mac/browser viewport and snaps cleanly into place. */
-html{scroll-snap-type:y proximity;scroll-padding-top:70px}
+html{scroll-padding-top:70px}
 .siteHeader{position:sticky;top:0;z-index:20;background:rgba(245,246,242,.96);backdrop-filter:blur(10px)}
-.hero,.introGrid,.journey,.projects,.life,footer{height:calc(100svh - 70px);min-height:620px;scroll-snap-align:start;scroll-snap-stop:normal;overflow:hidden}
+.hero,.introGrid,.journey,.projects,.life,footer{height:calc(100svh - 70px);min-height:620px;overflow:hidden}
 .hero{min-height:620px}
 .heroImage{min-height:0}
 .introGrid{grid-template-rows:56px 1fr}
@@ -63,7 +63,7 @@ footer .sectionIndex{min-height:56px}
 }
 
 /* Distinct editorial chapter layouts */
-.pageFrame{position:relative;height:calc(100svh - 70px);min-height:620px;overflow:hidden;scroll-snap-align:start;scroll-snap-stop:normal;background:var(--paper);font-family:"PingFang SC","Hiragino Sans GB",sans-serif}
+.pageFrame{position:relative;height:calc(100svh - 70px);min-height:620px;overflow:hidden;background:var(--paper);font-family:"PingFang SC","Hiragino Sans GB",sans-serif}
 .pageTop{position:absolute;z-index:4;top:0;left:0;right:0;height:56px;padding:0 3.1vw;display:flex;align-items:center;justify-content:space-between;font-family:"Arial Narrow","Avenir Next Condensed",sans-serif;font-size:11px;font-weight:600;letter-spacing:.13em}
 .pageTop span:last-child{font-family:"PingFang SC",sans-serif;font-size:13px;letter-spacing:.08em}
 
