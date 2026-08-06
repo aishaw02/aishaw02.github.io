@@ -14,3 +14,50 @@ footer{background:#171a19;color:#f2f3ef;padding-bottom:28px}footer .sectionIndex
 .heroImage{background-image:url('/hero-photo.jpg');background-size:cover;background-position:46% 50%}
 @media(max-width:900px){.heroImage{aspect-ratio:1.45;background-position:50% 48%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.enterLink span{transition:none}}
+
+/* One viewport, one chapter. The header stays visible while every section
+   occupies the remaining Mac/browser viewport and snaps cleanly into place. */
+html{scroll-snap-type:y mandatory;scroll-padding-top:70px}
+.siteHeader{position:sticky;top:0;z-index:20;background:rgba(245,246,242,.96);backdrop-filter:blur(10px)}
+.hero,.introGrid,.journey,.projects,.life,footer{height:calc(100svh - 70px);min-height:620px;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden}
+.hero{min-height:620px}
+.heroImage{min-height:0}
+.introGrid{grid-template-rows:56px 1fr}
+.introGrid>.sectionIndex{min-height:56px}
+.introTitle,.introText{padding-top:clamp(54px,8vh,90px);padding-bottom:clamp(54px,8vh,90px)}
+.journey,.projects{display:grid;grid-template-rows:56px auto 1fr}
+.journey .sectionIndex,.projects .sectionIndex{min-height:56px}
+.sectionLead h2{padding-top:clamp(34px,5vh,58px);padding-bottom:clamp(34px,5vh,58px)}
+.sectionLead>p{padding-top:clamp(42px,6vh,68px);padding-bottom:clamp(42px,6vh,68px)}
+.journeyList,.projectList{min-height:0;padding-bottom:0;display:grid;grid-template-rows:repeat(3,1fr)}
+.journeyRow{min-height:0;padding:clamp(16px,2.6vh,30px) 0}
+.projectRow{min-height:0;padding:clamp(18px,3vh,34px) 0}
+.lifeImage{min-height:0}
+.lifeCopy{min-height:0}
+.lifeCopy .sectionIndex{min-height:56px}
+.lifeCopy h2{padding-top:clamp(38px,6vh,68px);padding-bottom:clamp(32px,5vh,58px)}
+.lifeList p{padding-top:clamp(13px,2vh,20px);padding-bottom:clamp(13px,2vh,20px)}
+footer{display:grid;grid-template-rows:56px 1fr auto;padding-bottom:20px}
+footer .sectionIndex{min-height:56px}
+.footerMain{min-height:0;padding-top:clamp(45px,7vh,78px);padding-bottom:clamp(45px,7vh,78px)}
+
+@media(max-height:760px) and (min-width:901px){
+  .hero,.introGrid,.journey,.projects,.life,footer{min-height:560px}
+  .heroCopy{padding-top:52px;padding-bottom:42px}
+  .heroCopy h1{font-size:clamp(46px,4vw,62px)}
+  .heroIntro{margin-top:34px}.heroMeta{margin-top:26px}
+  .sectionLead h2{font-size:clamp(36px,4vw,54px)}
+  .journeyRow h3{font-size:19px}.journeyRow>p,.projectBody p{line-height:1.65}
+  .projectBody h3{font-size:26px;margin-bottom:10px}.projectBody h4{margin-bottom:16px}
+}
+
+@media(max-width:900px){
+  html{scroll-snap-type:none;scroll-padding-top:62px}
+  .siteHeader{top:0}
+  .hero,.introGrid,.journey,.projects,.life,footer{height:auto;min-height:0;overflow:visible;scroll-snap-align:none}
+  .hero{grid-template-columns:1fr}.heroImage{min-height:auto}.heroCopy{min-height:520px}
+  .introGrid,.journey,.projects,.life,footer{display:grid;grid-template-rows:auto}
+  .journeyList,.projectList{display:block;padding-bottom:80px}
+  .lifeImage{min-height:auto}
+  .footerMain{min-height:430px}
+}
