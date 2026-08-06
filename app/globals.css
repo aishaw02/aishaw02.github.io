@@ -62,6 +62,11 @@ footer .sectionIndex{min-height:56px}
   .footerMain{min-height:430px}
 }
 
+/* Quiet inset rule between editorial chapters. */
+.hero{position:relative;border-bottom:0}
+.hero::after,.pageFrame::after{content:"";position:absolute;z-index:8;left:12.5vw;right:12.5vw;bottom:0;height:1px;background:rgba(22,25,24,.14);pointer-events:none}
+@media(max-width:900px){.hero::after,.pageFrame::after{left:24px;right:24px}}
+
 /* Distinct editorial chapter layouts */
 .pageFrame{position:relative;height:calc(100svh - 70px);min-height:620px;overflow:hidden;background:var(--paper);font-family:"PingFang SC","Hiragino Sans GB",sans-serif}
 .pageTop{position:absolute;z-index:4;top:0;left:0;right:0;height:56px;padding:0 3.1vw;display:flex;align-items:center;justify-content:space-between;font-family:"Arial Narrow","Avenir Next Condensed",sans-serif;font-size:11px;font-weight:600;letter-spacing:.13em}
