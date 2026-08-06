@@ -63,7 +63,7 @@ footer .sectionIndex{min-height:56px}
 }
 
 /* Distinct editorial chapter layouts */
-.pageFrame{position:relative;background:var(--paper);font-family:"PingFang SC","Hiragino Sans GB",sans-serif}
+.pageFrame{position:relative;height:calc(100svh - 70px);min-height:620px;overflow:hidden;scroll-snap-align:start;scroll-snap-stop:always;background:var(--paper);font-family:"PingFang SC","Hiragino Sans GB",sans-serif}
 .pageTop{position:absolute;z-index:4;top:0;left:0;right:0;height:56px;padding:0 3.1vw;display:flex;align-items:center;justify-content:space-between;font-family:"Arial Narrow","Avenir Next Condensed",sans-serif;font-size:11px;font-weight:600;letter-spacing:.13em}
 .pageTop span:last-child{font-family:"PingFang SC",sans-serif;font-size:13px;letter-spacing:.08em}
 
@@ -97,13 +97,14 @@ footer .sectionIndex{min-height:56px}
 .lifeNote{position:absolute;right:3.1vw;bottom:3%;font-size:11px;line-height:1.7;text-align:right}
 
 @media(max-height:760px) and (min-width:901px){
+  .pageFrame{min-height:560px}
   .aboutPage h2{top:31%}.aboutPortrait{top:18%;height:38%}.aboutNote{bottom:9%}
   .journeyIntro{top:10%}.timeline{top:47%}.timelineYear{top:-76px}.timelineCopy small{margin-bottom:12px}
   .projectFeature{top:22%;bottom:25%}.projectNarrative h2{font-size:clamp(38px,4.2vw,58px);margin-bottom:14px}.projectNarrative>p{line-height:1.6}.decisionStrip{padding-top:12px}
 }
 
 @media(max-width:900px){
-  .pageFrame{padding:80px 24px 60px!important;display:block!important}.pageTop{height:56px;padding:0 24px;border-bottom:1px solid var(--line)}
+  .pageFrame{height:auto;min-height:0;overflow:visible;scroll-snap-align:none;padding:80px 24px 60px!important;display:block!important}.pageTop{height:56px;padding:0 24px;border-bottom:1px solid var(--line)}
   .aboutPage h2,.aboutAside,.aboutPortrait,.aboutNote,.aboutMotto,.coordinates,.journeyIntro,.timeline,.journeyFoot,.projectTabs,.projectFeature,.decisionStrip,.lifePage>h2,.lifeShot,.lifeWords,.lifeNote{position:relative;inset:auto;left:auto;right:auto;top:auto;bottom:auto;width:auto;height:auto}
   .aboutAside{margin:20px 0 45px}.aboutPage h2{font-size:42px;margin-bottom:45px}.aboutPortrait{height:52vw;max-height:420px;margin:0 0 35px}.aboutNote{margin-bottom:45px}.coordinates{display:block;margin-top:20px;text-align:left}
   .journeyIntro{display:block;margin:15px 0 110px}.journeyIntro h2{margin-bottom:25px}.timeline{display:block;border-top:0}.timelineItem{border-top:1px solid var(--ink);padding:35px 0 45px}.timelineYear{top:-60px;right:0;left:auto}.timelineDot{display:none}.journeyFoot{margin-top:30px}
