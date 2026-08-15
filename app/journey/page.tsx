@@ -1,6 +1,25 @@
 import Link from "next/link";
 
-const chapters = [
+type JourneyEntry = {
+  kind: "EDUCATION" | "STUDENT WORK" | "INTERNSHIP";
+  image: string;
+  period: string;
+  place: string;
+  role: string;
+  description: string;
+  schoolTags?: string[];
+  notes?: string[];
+  secondary?: boolean;
+};
+
+type JourneyChapter = {
+  index: string;
+  category: string;
+  english: string;
+  entries: JourneyEntry[];
+};
+
+const chapters: JourneyChapter[] = [
   {
     index: "01",
     category: "本科",
