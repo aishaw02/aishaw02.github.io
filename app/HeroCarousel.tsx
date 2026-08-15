@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 const slides = [
   { src: "/hero-photo-water-sunset.jpg", label: "晚霞下的山与水面", position: "50% 48%", shade: 0 },
   { src: "/hero-slide-lake.jpg", label: "树影与湖面前举手的剪影", position: "50% 50%", shade: 0.1 },
-  { src: "/hero-slide-garden-collage.png", label: "夏日园林中的影像拼贴", position: "50% 50%", shade: 0.1 },
+  { src: "/hero-slide-garden-collage.webp", label: "夏日园林中的影像拼贴", position: "50% 50%", shade: 0.1 },
 ];
 
 export default function HeroCarousel() {
