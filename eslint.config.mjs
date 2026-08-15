@@ -11,8 +11,15 @@ const eslintConfig = defineConfig([
     ".next/**",
     "out/**",
     "build/**",
+    ".codex/**",
     "next-env.d.ts",
   ]),
+  {
+    rules: {
+      // The site deliberately preserves original image ratios and source files.
+      "@next/next/no-img-element": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;

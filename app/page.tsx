@@ -1,8 +1,4 @@
-const journeys = [
-  { no: "01", year: "2024", label: "STATISTICS / BEGINNING", title: "从数据开始", text: "学习拆解问题、寻找证据，再做判断。" },
-  { no: "02", year: "2025", label: "DIDI / TECH OPERATIONS", title: "走进开发者的世界", text: "把报名、组队、答疑与决赛连成完整体验。" },
-  { no: "03", year: "2026", label: "STEPFUN / OPEN PLATFORM", title: "把想法落地", text: "在渠道、触达和权益规则之间做真实取舍。" },
-];
+import HeroCarousel from "./HeroCarousel";
 
 export default function Home() {
   return (
@@ -10,68 +6,64 @@ export default function Home() {
       <header className="siteHeader">
         <a className="monogram" href="#top" aria-label="回到首页">FP</a>
         <nav aria-label="主导航">
-          <a href="#about">ABOUT</a><a href="#journey">JOURNEY</a><a href="#projects">PROJECTS</a><a href="#life">LIFE</a>
+          <a href="/journey">JOURNEY</a><a href="/projects">PROJECTS</a><a href="/thoughts">THOUGHTS</a><a href="/life">LIFE</a>
         </nav>
-        <a className="headerResume" href="/wang-fangpu-resume.pdf" download="王方浦-个人简历.pdf">DOWNLOAD CV <span>↓</span></a>
+        <div className="journeyHeaderRight">
+          <div className="journeyIdentityTags" aria-label="个人身份标签"><span>27届</span><span>北师大统计学硕</span><span>中共党员</span></div>
+          <a className="headerResume" href="/wang-fangpu-resume.pdf" download="王方浦-个人简历.pdf">DOWNLOAD CV <span>↓</span></a>
+        </div>
       </header>
 
       <section className="hero" aria-labelledby="hero-title">
-        <div className="heroImage" role="img" aria-label="夏日林间水面旁的身影" />
+        <HeroCarousel />
         <div className="heroCopy">
-          <div>
-            <h1 className="heroName" id="hero-title"><span>Aisha</span><span>Wang</span></h1>
-            <p className="helloCn">很高兴认识你，我是王方浦</p>
+          <div className="heroIdentity">
+            <h1 className="heroName" id="hero-title"><span>你好，我是王方浦</span></h1>
+            <p className="heroTagline">Welcome to my world.</p>
           </div>
-          <a className="enterLink" href="#about">ENTER <span>→</span></a>
+          <a className="enterLink" href="#about">EXPLORE <span>→</span></a>
         </div>
       </section>
 
       <section className="aboutPage pageFrame" id="about">
-        <div className="pageTop"><span>01 / ABOUT</span><span>关于我</span></div>
-        <aside className="aboutAside"><strong>FANGPU</strong><p>Product &amp; Growth<br />Explorer of AI<br />Based in Beijing</p><i>—</i></aside>
-        <h2>一个热爱生活的人，<br />在认真探索 AI。</h2>
-        <figure className="aboutPortrait"><img src="/life-garden.jpg" alt="夏日园林中的个人生活照片" /></figure>
-        <p className="aboutNote">我喜欢把复杂问题拆开，找到真正重要的部分，再用产品与运营的方式把事情推进下去。</p>
-        <p className="aboutMotto">STAY CURIOUS.<br />BUILD WITH WARMTH.</p>
-        <span className="coordinates">39.9042° N<br />116.4074° E</span>
-      </section>
-
-      <section className="journeyPage pageFrame" id="journey">
-        <div className="pageTop"><span>02 / JOURNEY</span><span>经历</span></div>
-        <div className="journeyIntro"><h2>三段经历，<br />一条持续靠近的路。</h2><p>不是预先写好的路线，<br />而是一路好奇、一路理解。</p></div>
-        <div className="timeline" aria-label="经历时间线">
-          {journeys.map((item) => <article className="timelineItem" key={item.no}>
-            <span className="timelineYear">{item.year}</span><span className="timelineDot" />
-            <div className="timelineCopy"><b>{item.no}</b><small>{item.label}</small><h3>{item.title}</h3><p>{item.text}</p></div>
-          </article>)}
+        <div className="journeyCoverCopy">
+          <h2><span className="journeyTitleCn"><span>行</span><span>迹</span></span><em><span>on</span><span>the</span><span>way</span></em></h2>
+          <p><strong>从校园到职场，一段关于成长的时间线。</strong><br />记录了我学习经历、实习经历，以及每一次重要的选择与转折。每一段经历都有它存在的意义，也共同塑造了今天的我。</p>
+          <a href="/journey"><span className="journeyLinkText">查看我的时间线</span><span className="journeyChevron" aria-hidden="true" /></a>
         </div>
-        <p className="journeyFoot">THREE MOMENTS.<br />ONE CONTINUOUS PATH.</p>
+        <figure className="journeyCoverImage"><img src="/journey-campus.jpg" alt="校园建筑与草木景观" /></figure>
       </section>
 
-      <section className="projectPage pageFrame" id="projects">
-        <div className="pageTop"><span>03 / PROJECTS</span><span>项目</span></div>
-        <div className="projectTabs" aria-label="项目索引"><b>01</b><span>/</span><span>02</span><span>/</span><span>03</span></div>
-        <div className="projectFeature">
-          <div className="projectNarrative"><span className="projectNo">01</span><h2>Step Plan<br />海外版本</h2><p className="projectLead">不只是翻译，而是一次产品适配。</p><p>结合海外团队反馈与资源约束，重新梳理推广渠道、用户触达与权益规则，支持产品完成海外冷启动。</p><a href="#contact">VIEW CASE STUDY <span>→</span></a></div>
-          <div className="projectVisual" aria-label="Step Plan 项目视觉示意"><div className="caseLabel">STEP PLAN<br /><small>GLOBAL LAUNCH / 2026</small></div><div className="caseCard"><span>PLAN</span><strong>Ideas travel.<br />Products adapt.</strong><i>01 / 03</i></div></div>
+      <section className="homeEditorialCover pageFrame coverPractice" id="journey">
+        <div className="homeEditorialCopy">
+          <h2><span>实践</span><em>in practice</em></h2>
+          <p><strong>真实项目的完整记录，也是成长的过程。</strong><br />收录了我参与过的校园项目、实习实践以及个人作品，不仅记录做了什么，也记录为什么这样做、最终取得了什么结果，以及我从中获得了哪些新的思考。</p>
+          <a href="/projects"><span>让我成长的项目</span><i aria-hidden="true" /></a>
         </div>
-        <div className="decisionStrip"><div><b>01</b><span>渠道洞察</span><p>识别海外用户真正可触达的入口。</p></div><div><b>02</b><span>设计决策</span><p>在资源与体验之间确认优先级。</p></div><div><b>03</b><span>结果影响</span><p>让产品更自然地进入新环境。</p></div></div>
+        <figure className="homeEditorialImage"><img src="/home-practice.jpg" alt="项目活动现场的电脑与工作材料" /></figure>
       </section>
 
-      <section className="lifePage pageFrame" id="life">
-        <div className="pageTop"><span>04 / LIFE</span><span>生活</span></div>
-        <h2>工作之外，<br />也是生活之中。</h2>
-        <figure className="lifeShot shotOne"><img src="/hero-photo.jpg" alt="林间水面与人物" /><figcaption>旅行 / 重新观察日常</figcaption></figure>
-        <figure className="lifeShot shotTwo"><img src="/life-sunset.jpg" alt="海边夕阳" /><figcaption>音乐 / 给一天加一点背景声</figcaption></figure>
-        <figure className="lifeShot shotThree"><img src="/life-garden.jpg" alt="夏日园林" /><figcaption>创造 / 把小想法做出来</figcaption></figure>
-        <div className="lifeWords"><p><span>01</span>旅行<small>TRAVEL</small></p><p><span>02</span>阅读<small>READING</small></p><p><span>03</span>音乐<small>MUSIC</small></p><p><span>04</span>创造<small>CREATE</small></p></div>
-        <p className="lifeNote">记录生活，<br />也记录温度。</p>
+      <section className="homeEditorialCover pageFrame coverReflection" id="projects">
+        <div className="homeEditorialCopy">
+          <h2><span>所思</span><em>in reflection</em></h2>
+          <p><strong>有些问题没有标准答案，但依旧值得反复思考</strong><br />不是具体的项目复盘，也不是成长鸡汤，而是一路走来逐渐形成的认知：关于 AI、关于工作，以及关于如何认识自己。</p>
+          <a href="/thoughts"><span>从思考中探索答案</span><i aria-hidden="true" /></a>
+        </div>
+        <figure className="homeEditorialImage"><img src="/home-reflection.jpg" alt="AI 产品体验与分类活动展板" /></figure>
+      </section>
+
+      <section className="homeEditorialCover pageFrame coverDaily" id="life">
+        <div className="homeEditorialCopy">
+          <h2><span>日常</span><em>beyond work</em></h2>
+          <p><strong>工作之外，让我成为自己的日常。</strong><br />旅行、摄影、音乐、Citywalk、美食……这里记录生活里的小事，也是我获取灵感、保持好奇心和感受世界的方式。</p>
+          <a href="/life"><span>和我一起热爱生活</span><i aria-hidden="true" /></a>
+        </div>
+        <figure className="homeEditorialImage"><img src="/home-daily.jpg" alt="演唱会现场的彩色纸屑与观众" /></figure>
       </section>
 
       <footer id="contact">
-        <div className="sectionIndex"><span>05 / CONTACT</span><span>BEIJING · CHINA</span></div>
-        <div className="footerMain"><h2>欢迎来聊聊。</h2><p>如果你也对产品、AI，或生活里的小事感兴趣。</p><a href="mailto:hello@example.com">HELLO@EXAMPLE.COM <span>↗</span></a></div>
-        <div className="footerBottom"><span>© 2026 FANGPU</span><span>MADE WITH CURIOSITY.</span><a href="#top">BACK TO TOP ↑</a></div>
+        <div className="footerMain"><h2>未完待续…</h2><p>好奇 · 思考 · 探索 · 热爱</p><a href="mailto:aishawang02@163.com">aishawang02@163.com <span>↗</span></a></div>
+        <div className="footerBottom"><span>© 2026 FANGPU</span><span>MADE WITH CHATGPT &amp; CODEX</span><a href="#top">BACK TO TOP ↑</a></div>
       </footer>
     </main>
   );
