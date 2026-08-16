@@ -87,6 +87,32 @@ export default function LifeFeed() {
   const galleryLabel = gallery === null ? "" : `第${gallery.group}组`;
   const hasPreviousImage = gallery !== null && gallery.index > 0;
   const hasNextImage = gallery !== null && gallery.index < galleryImages.length - 1;
+  const overlayOpen = active !== null || detailGroup !== null || gallery !== null;
+
+  useEffect(() => {
+    if (!overlayOpen) return;
+
+    const scrollY = window.scrollY;
+    const previous = {
+      overflow: document.body.style.overflow,
+      position: document.body.style.position,
+      top: document.body.style.top,
+      width: document.body.style.width,
+    };
+
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+
+    return () => {
+      document.body.style.overflow = previous.overflow;
+      document.body.style.position = previous.position;
+      document.body.style.top = previous.top;
+      document.body.style.width = previous.width;
+      window.scrollTo(0, scrollY);
+    };
+  }, [overlayOpen]);
 
   const resetZoom = () => {
     setScale(1);
@@ -139,10 +165,10 @@ export default function LifeFeed() {
     pointerMoved.current = false;
     event.currentTarget.setPointerCapture(event.pointerId);
     pointers.current.set(event.pointerId, { x: event.clientX, y: event.clientY });
-    if (pointers.current.size === 1 && scale > 1) {
-      setDragging(true);
+    if (pointers.current.size === 1) {
       dragOrigin.current = { x: event.clientX, y: event.clientY };
       offsetOrigin.current = offset;
+      if (scale > 1) setDragging(true);
     } else if (pointers.current.size === 2) {
       const [a, b] = [...pointers.current.values()];
       pinchDistance.current = Math.hypot(a.x - b.x, a.y - b.y);
@@ -168,9 +194,15 @@ export default function LifeFeed() {
   };
 
   const onPointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
+    const wasSinglePointer = pointers.current.size === 1;
+    const swipeX = event.clientX - dragOrigin.current.x;
+    const swipeY = event.clientY - dragOrigin.current.y;
     pointers.current.delete(event.pointerId);
     if (pointers.current.size < 2) pinchDistance.current = 0;
     if (pointers.current.size === 0) setDragging(false);
+    if (wasSinglePointer && scale === 1 && Math.abs(swipeX) > 48 && Math.abs(swipeX) > Math.abs(swipeY)) {
+      moveGallery(swipeX > 0 ? -1 : 1);
+    }
   };
 
   const closeGallery = () => {
@@ -304,6 +336,9 @@ export default function LifeFeed() {
           <button className="projectLightboxArrow projectLightboxPrev" type="button" onClick={(event) => { event.stopPropagation(); moveGallery(-1); }} aria-label="上一张图片" disabled={!hasPreviousImage}>‹</button>
           <button className="projectLightboxArrow projectLightboxNext" type="button" onClick={(event) => { event.stopPropagation(); moveGallery(1); }} aria-label="下一张图片" disabled={!hasNextImage}>›</button>
           <span className="projectLightboxCount">{gallery.index + 1} / {galleryImages.length}</span>
+          <div className="mobileLightboxDots" aria-hidden="true">
+            {galleryImages.map((image, index) => <i className={index === gallery.index ? "isActive" : ""} key={image} />)}
+          </div>
           <div className="lifeZoomControls" onClick={(event) => event.stopPropagation()} aria-label="图片缩放控制">
             <button type="button" onClick={() => updateScale(scale - .25)} aria-label="缩小图片">−</button>
             <span>{Math.round(scale * 100)}%</span>

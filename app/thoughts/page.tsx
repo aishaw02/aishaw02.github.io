@@ -190,7 +190,7 @@ export default function ThoughtsPage() {
       <header className="siteHeader journeyDetailSiteHeader">
         <Link className="monogram" href="/" aria-label="返回主页">FP</Link>
         <nav aria-label="主导航"><a href="/journey">JOURNEY</a><a href="/projects">PROJECTS</a><a className="isActive" href="/thoughts" aria-current="page">THOUGHTS</a><a href="/life">LIFE</a></nav>
-        <div className="journeyHeaderRight"><div className="journeyIdentityTags" aria-label="个人身份标签"><span>27届</span><span>北师大统计学硕</span><span>中共党员</span></div><a className="headerResume" href="/wang-fangpu-resume.pdf" download="王方浦-个人简历.pdf">DOWNLOAD CV <span>↓</span></a></div>
+        <div className="journeyHeaderRight"><div className="journeyIdentityTags" aria-label="个人身份标签"><span>27届</span><span>北师大统计学硕</span><span>中共党员</span></div><a className="headerResume" href="/wang-fangpu-resume.pdf" download="王方浦-27届-北师大统计学硕.pdf">DOWNLOAD CV <span>↓</span></a></div>
       </header>
 
       <section className="projectsArchive thoughtsArchive" aria-labelledby="thoughts-title">

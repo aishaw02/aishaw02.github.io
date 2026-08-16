@@ -3,7 +3,7 @@
 import { type CSSProperties, type PointerEvent as ReactPointerEvent, useEffect, useRef, useState } from "react";
 
 type BookParagraph = string | { text: string; bold?: string[]; boldAll?: boolean };
-type BookPage = { kicker: string; title: string; level: "primary" | "secondary"; introTitle?: string; note?: string; paragraphs: BookParagraph[] };
+type BookPage = { kicker: string; title: string; level: "primary" | "secondary"; introTitle?: string; note?: string; compact?: boolean; paragraphs: BookParagraph[] };
 
 const renderParagraph = (paragraph: BookParagraph) => {
   if (typeof paragraph === "string") return paragraph;
@@ -44,7 +44,7 @@ const pages: BookPage[] = [
     paragraphs: [
       "和审美一样，做网站最终还是要靠内容表达。所以放些什么东西在里面，以及怎么放才会逻辑通顺是另一件让我头大的事情。所以我再次大量浏览小红书并严肃阅读和关注前辈们做出来的网站……在这个过程中我甚至一度陷入了焦虑，好像我并没有很多值得展示的项目，并且我能够写出来的经历跟互联网上的很多人比起来，感觉会有些普通。",
       { text: "还有就是，我很难面对“美化”经历这件事，我当然理解求职需要包装和提炼，但我实在无法允许自己写一些没做过的东西进去。有天晚上我在笔记本上写写画画，写我的经历写我的思考写我想放进网站的东西。然后我突然就明白了——我想把真实的自己带到大家面前。", bold: ["我想把真实的自己带到大家面前"] },
-      "当然这个网站是求职而生的，但我不希望它只剩下工作中的我。工作能力固然重要，但这是我这个人的一部分，我不想因为这个网站的目的是求职，就主动删掉其他同样真实的自己。所以我加入了我的学业旅程、加入了我没有持续很久的实习经历、加入了我在成长的过程中不难么成熟的、有些痛苦的时刻。走到现在，我的每一段经历都是无法忽视、无法割舍的，没有哪一段是因为不够完美而需要被假装不存在。",
+      "当然这个网站是求职而生的，但我不希望它只剩下工作中的我。工作能力固然重要，但这是我这个人的一部分，我不想因为这个网站的目的是求职，就主动删掉其他同样真实的自己。所以我加入了我的学业旅程、加入了我没有持续很久的实习经历、加入了我在成长的过程中不那么成熟的、有些痛苦的时刻。走到现在，我的每一段经历都是无法忽视、无法割舍的，没有哪一段是因为不够完美而需要被假装不存在。",
     ],
   },
   {
@@ -78,10 +78,26 @@ const pages: BookPage[] = [
       "我想要变得更好。",
     ],
   },
+  {
+    kicker: "06 / FIRST UPDATE",
+    title: "第一次更新",
+    level: "secondary",
+    note: "来自 2026.8.15 的日记",
+    compact: true,
+    paragraphs: [
+      "这一天完成了最后的内容准备以及网站 1.0 版本的上线部署，并实时记录日记如下，作为这个网站的第一篇更新日志：",
+      "8/15 00:02 现在在做：移动端适配性检查，自以为完成了大部分，大概 70%",
+      "20:37 整理完所有的图片竟然已经快 9 点了……确实今天开始得也比较晚，但整个过程特别爽！",
+      "22:14 我彻底完成了内容部分的构建，恭喜！",
+      "8/16 00:25 做这个网站的过程中我发现了自己的新特点，越是复杂的任务，我就会更焦虑，我一定要眼看着它跑完才能做别的正事儿……",
+      "00:37 部署进行中……我人生第一次感受到了 token 焦虑，也幸好这周中间重置了一次。",
+      "00:45 上线啦！其他的事情就交给睡醒后的自己吧，我和电脑都需要冷静和休息一下。",
+    ],
+  },
 ];
 
 const PageContent = ({ page, number, className = "" }: { page: BookPage; number: number; className?: string }) => (
-  <article className={`easterEggBookPage is${page.level === "primary" ? "Primary" : "Secondary"} ${className}`}>
+  <article className={`easterEggBookPage is${page.level === "primary" ? "Primary" : "Secondary"}${page.compact ? " isCompact" : ""} ${className}`}>
     <header>
       <p>{page.kicker}</p>
       {page.level === "primary" ? <><h1>{page.title}</h1>{page.introTitle && <h2 className="easterEggIntroTitle">{page.introTitle}</h2>}</> : <h2>{page.title}</h2>}
@@ -112,7 +128,7 @@ export default function EasterEggBook() {
   const drag = useRef<{ startX: number; pointerId: number; direction?: "next" | "prev"; targetIndex?: number; progress: number } | null>(null);
   const suppressClick = useRef(false);
   const step = isNarrow ? 1 : 2;
-  const maxIndex = isNarrow ? pages.length - 1 : Math.max(0, pages.length - 2);
+  const maxIndex = isNarrow ? pages.length - 1 : Math.max(0, pages.length - (pages.length % 2 === 0 ? 2 : 1));
 
   const clearTurnTimer = () => {
     if (turnTimer.current) clearTimeout(turnTimer.current);
@@ -199,6 +215,7 @@ export default function EasterEggBook() {
     const currentDrag = drag.current;
     drag.current = null;
     if (!currentDrag.direction || currentDrag.targetIndex === undefined) {
+      if (isNarrow) return;
       const bounds = event.currentTarget.getBoundingClientRect();
       suppressClick.current = true;
       go(event.clientX < bounds.left + bounds.width / 2 ? -1 : 1);
@@ -236,16 +253,22 @@ export default function EasterEggBook() {
       flipFront = { page: visiblePages[0], number: pageIndex };
       flipBack = { page: targetPages[0], number: turn.targetIndex };
     } else if (turn.direction === "next") {
-      basePages = [
-        { page: visiblePages[0], number: pageIndex },
-        { page: targetPages[1], number: turn.targetIndex + 1 },
-      ];
+      basePages = targetPages[1]
+        ? [
+            { page: visiblePages[0], number: pageIndex },
+            { page: targetPages[1], number: turn.targetIndex + 1 },
+          ]
+        : [{ page: targetPages[0], number: turn.targetIndex }];
       flipFront = { page: visiblePages[1], number: pageIndex + 1 };
       flipBack = { page: targetPages[0], number: turn.targetIndex };
     } else {
       basePages = [
         { page: targetPages[0], number: turn.targetIndex },
-        { page: visiblePages[1], number: pageIndex + 1 },
+        ...(visiblePages[1]
+          ? [{ page: visiblePages[1], number: pageIndex + 1 }]
+          : targetPages[1]
+            ? [{ page: targetPages[1], number: turn.targetIndex + 1 }]
+            : []),
       ];
       flipFront = { page: visiblePages[0], number: pageIndex };
       flipBack = { page: targetPages[1], number: turn.targetIndex + 1 };
@@ -270,8 +293,8 @@ export default function EasterEggBook() {
               <i className="easterEggFlipShade" />
             </div>
           )}
-          <button className="easterEggPageHit easterEggPageHitPrev" type="button" onClick={() => clickTurn(-1)} disabled={pageIndex === 0 || Boolean(turn)} aria-label="点击左半页向前翻页" />
-          <button className="easterEggPageHit easterEggPageHitNext" type="button" onClick={() => clickTurn(1)} disabled={pageIndex === maxIndex || Boolean(turn)} aria-label="点击右半页向后翻页" />
+          {!isNarrow && <button className="easterEggPageHit easterEggPageHitPrev" type="button" onClick={() => clickTurn(-1)} disabled={pageIndex === 0 || Boolean(turn)} aria-label="点击左半页向前翻页" />}
+          {!isNarrow && <button className="easterEggPageHit easterEggPageHitNext" type="button" onClick={() => clickTurn(1)} disabled={pageIndex === maxIndex || Boolean(turn)} aria-label="点击右半页向后翻页" />}
         </section>
         <div className="easterEggBookControls">
           <button type="button" onClick={() => go(-1)} disabled={pageIndex === 0 || Boolean(turn)} aria-label="上一页">← PREV</button>

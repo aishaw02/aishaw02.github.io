@@ -102,15 +102,16 @@ const campusSections = [
 const fourthWallLead = `最初的出发点来自秋招：我希望求职产品相关岗位，但已有经历并不完全垂直，因此想用一个真实项目补充对自己的展示。
 在参考了一些个人网站与求职作品后，我发现自己并不想再做一份“网页简历”。相比只展示工作经历，我更希望这个网站回答一个更完整的问题：我是一个怎样的人。`;
 
-const fourthWallWork = `01｜为什么是一个网站：先想清楚它要解决什么
-从最初，我就希望它不只是简历的延伸，而是对自己的完整介绍。围绕这一目标重新组织内容，最终形成 Journey / Projects / Thoughts / Life 四个模块，分别呈现经历、实践、思考与生活。
+const fourthWallWork = `01｜产品定义：先回答“为什么存在”
+从最初，我就希望它不只是简历的延伸，而是对自己的完整介绍。围绕这一目标重新组织内容，最终形成 Journey / Projects / Thoughts / Life 四个模块，分别呈现经历、实践、思考与生活。相比单纯增加内容，我更关注不同部分之间是否共同指向一个完整、真实的人。
 
-02｜和 AI 一起做出来：把想法变成真实页面
-主要借助 ChatGPT × Codex 完成网站搭建：ChatGPT 用于内容梳理、结构讨论与需求细化，Codex 负责页面、样式与交互实现。过程中不断把模糊的想法转化为明确需求，也逐渐理解 AI 的能力边界，以及哪些判断仍需要由自己负责。
-同时，把这个项目作为一次 Vibe Coding 实践，持续调整与 AI 协作的方式，提高从想法到实现的效率。
+02｜协作实现：把判断留给自己
+主要借助 ChatGPT × Codex 完成网站搭建：ChatGPT 用于内容梳理、结构讨论与需求细化，Codex 负责页面、样式与交互实现。
+这个过程也是一次 Vibe Coding 实践。虽然 AI 显著降低了从想法到实现的成本，但产品定义、审美判断、内容取舍和最终体验仍然需要由我持续做决定。
 
-03｜没有最终版：在一次次修改里逼近答案
-网站能够正常使用之后，继续围绕内容顺序、信息密度、配色、图片、字体与交互细节进行迭代。每一次修改都基于同一个判断标准：它是否更清楚、更好用、更好看，也更准确地表达了我。`;
+03｜持续迭代：在一次次修改里逼近答案
+网站能够正常使用之后，我继续围绕内容顺序、信息密度、配色、图片、字体与交互细节进行迭代。
+每一次修改都基于同一个判断标准：它是否更清楚、更好用、更好看，也更准确地表达了我。`;
 
 const renderHighlights = (text: string, highlights: string[]) => {
   const escaped = highlights.map((item) => item.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
@@ -199,10 +200,10 @@ export default function ProjectsShowcase() {
     pointerMoved.current = false;
     event.currentTarget.setPointerCapture(event.pointerId);
     pointers.current.set(event.pointerId, { x: event.clientX, y: event.clientY });
-    if (pointers.current.size === 1 && scale > 1) {
-      setDragging(true);
+    if (pointers.current.size === 1) {
       dragOrigin.current = { x: event.clientX, y: event.clientY };
       offsetOrigin.current = offset;
+      if (scale > 1) setDragging(true);
     } else if (pointers.current.size === 2) {
       const [a, b] = [...pointers.current.values()];
       pinchDistance.current = Math.hypot(a.x - b.x, a.y - b.y);
@@ -228,9 +229,15 @@ export default function ProjectsShowcase() {
   };
 
   const onPointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
+    const wasSinglePointer = pointers.current.size === 1;
+    const swipeX = event.clientX - dragOrigin.current.x;
+    const swipeY = event.clientY - dragOrigin.current.y;
     pointers.current.delete(event.pointerId);
     if (pointers.current.size < 2) pinchDistance.current = 0;
     if (pointers.current.size === 0) setDragging(false);
+    if (wasSinglePointer && scale === 1 && Math.abs(swipeX) > 48 && Math.abs(swipeX) > Math.abs(swipeY)) {
+      moveGallery(swipeX > 0 ? -1 : 1);
+    }
   };
 
   const onStageClick = () => {
@@ -316,7 +323,7 @@ export default function ProjectsShowcase() {
             </figure>
             <div className="projectDetailCopy">
               <p className="projectDetailEyebrow">PROJECT {selected.no} · {selected.date}</p>
-              <h2 id="project-modal-title">{selected.no === "04" ? "打破第四面墙｜这个网站是怎么做出来的" : <><span>{selected.prefix}<em>{selected.number}</em></span>{selected.title}</>}</h2>
+              <h2 id="project-modal-title">{selected.no === "04" ? "打破第四面墙｜这个网站为什么是这样" : <><span>{selected.prefix}<em>{selected.number}</em></span>{selected.title}</>}</h2>
               <p className="projectDetailLead">{selected.no === "01"
                 ? "滴滴第四届黑客松 D- Hacks - 面向全公司举办，以真实业务问题为赛题，通过集中创新的方式连接业务创新、组织协作与人才发现。"
                 : selected.no === "02"
@@ -333,11 +340,11 @@ export default function ProjectsShowcase() {
                   </div>
                   <div className="projectDetailSection">
                     <h3>我做了什么</h3>
-                    <p>{renderHighlights(fourthWallWork, ["而是对自己的完整介绍"])}</p>
+                    <p>{renderHighlights(fourthWallWork, ["共同指向一个完整、真实的人", "把判断留给自己"])}</p>
                   </div>
                   <div className="projectDetailSection projectReferenceSection">
                     <h3>参考文献</h3>
-                    <p>为了让网站在信息之外也保持舒适的视觉体验，我持续参考喜欢的网站、作品与视觉内容，并从中吸收页面结构、排版、留白、图片使用和交互方式的灵感。</p>
+                    <p>网站的视觉并非从零产生。在制作过程中，我持续参考自己喜欢的网站与内容，并根据整体表达重新组合：</p>
                     <ul>
                       <li>首页｜<a href="https://tosummer.cn/cn" target="_blank" rel="noreferrer">观夏官网</a>：参考大幅摄影、留白与首页整体氛围。</li>
                       <li>PROJECTS｜<a href="https://www.xiaohongshu.com/discovery/item/6909026600000000030119a0?source=webshare&amp;xhsshare=pc_web&amp;xsec_token=AB3d97MBmOciPLDyVhhoVjScT6K_tdwhS4QJAptODacOc=&amp;xsec_source=pc_share" target="_blank" rel="noreferrer">@林小淼的小红书文章</a>：参考 Blog / Archive 式的项目组织与呈现方式。</li>
@@ -388,6 +395,9 @@ export default function ProjectsShowcase() {
                   <button className="projectLightboxArrow projectLightboxPrev" type="button" onClick={(event) => { event.stopPropagation(); moveGallery(-1); }} aria-label="上一张图片" disabled={!hasPreviousImage}>‹</button>
                   <button className="projectLightboxArrow projectLightboxNext" type="button" onClick={(event) => { event.stopPropagation(); moveGallery(1); }} aria-label="下一张图片" disabled={!hasNextImage}>›</button>
                   <span className="projectLightboxCount">{galleryIndex + 1} / {selectedImages.length}</span>
+                  <div className="mobileLightboxDots" aria-hidden="true">
+                    {selectedImages.map((image, index) => <i className={index === galleryIndex ? "isActive" : ""} key={image} />)}
+                  </div>
                 </>
               )}
               <div className="lifeZoomControls" onClick={(event) => event.stopPropagation()} aria-label="图片缩放控制">
